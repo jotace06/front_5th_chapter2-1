@@ -1,9 +1,9 @@
 import { type CartItem } from '../entities/cart-item';
-import { type Product } from '../../product/entities';
+import { type Product } from '../../product/entities/product';
 import * as CartService from '../services/cart-services';
 import * as CartItemEntity from '../entities/cart-item';
-import * as ProductService from '../../product/services';
-import * as ProductEntity from '../../product/entities';
+import * as ProductService from '../../product/services/product-services';
+import * as ProductEntity from '../../product/entities/product';
 
 // 상품별 할인율 정의 (10개 이상 구매 시 적용)
 const PRODUCT_DISCOUNT_RATE_MAP: Record<string, number> = {
@@ -187,5 +187,5 @@ export const getLowStockInfo = (products: Product[]): string => {
       const stock = ProductEntity.getProductStock(product);
       return `${name}: ${stock > 0 ? `재고 부족 (${stock}개 남음)` : '품절'}`;
     })
-    .join('');
+    .join(' ');
 };

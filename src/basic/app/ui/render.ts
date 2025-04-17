@@ -1,4 +1,3 @@
-// app/ui/render.ts
 import { AppState } from '../../core/state';
 import * as ProductUI from '../../domains/product/ui/render';
 import * as CartUI from '../../domains/cart/ui/render';

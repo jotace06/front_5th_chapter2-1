@@ -12,7 +12,5 @@ interface StockStatusProps {
 export const StockStatus = (props: StockStatusProps): string => {
   const { products } = props;
 
-  const lowStockInfo = ProductPolicy.getLowStockInfo(products);
-
-  return lowStockInfo;
+  return ProductPolicy.getLowStockInfo(products);
 };

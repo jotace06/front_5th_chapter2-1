@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { useAppContext } from '../../../app/app-context';
+import { useAppState } from '../../../app/app-context';
 import * as CartPolicy from '../policies/cart-policies';
 
 const CartTotal = () => {
-  const {
-    state: { cartItems },
-  } = useAppContext();
+  const { cartItems } = useAppState();
 
   const { finalTotal, discountRate, bonusPoints } =
     CartPolicy.calculateCartTotal(cartItems);

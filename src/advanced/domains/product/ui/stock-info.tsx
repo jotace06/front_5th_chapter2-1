@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { useAppContext } from '../../../app/app-context';
+import { useAppState } from '../../../app/app-context';
 import * as CartPolicy from '../../cart/policies/cart-policies';
 
 const StockInfo = () => {
-  const { state } = useAppContext();
+  const { products } = useAppState();
 
-  const lowStockInfo = CartPolicy.getLowStockInfo(state.products);
+  const lowStockInfo = CartPolicy.getLowStockInfo(products);
 
   return (
     <div

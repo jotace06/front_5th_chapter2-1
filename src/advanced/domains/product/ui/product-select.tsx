@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import { useAppContext } from '../../../app/app-context';
+import { useAppState, useAppDispatch } from '../../../app/app-context';
 import { ActionType } from '../../../app/app-reducer';
 import * as ProductEntity from '../entities/product';
 
 const ProductSelect = () => {
-  const { state, dispatch } = useAppContext();
-  const [selectedProductId, setSelectedProductId] = useState<string>('');
+  const { products } = useAppState();
+  const dispatch = useAppDispatch();
+
+  const [selectedProductId, setSelectedProductId] = useState<string>('p1');
 
   const handleAddToCartClick = () => {
     if (!selectedProductId) return;
@@ -21,15 +23,6 @@ const ProductSelect = () => {
     setSelectedProductId(event.target.value);
   };
 
-  // 컴포넌트 마운트 시 재고가 있는 첫 번째 상품을 선택
-  useEffect(() => {
-    const firstSelectableProduct = state.products.find(ProductEntity.hasStock);
-
-    if (firstSelectableProduct) {
-      setSelectedProductId(firstSelectableProduct.id);
-    }
-  }, [state.products]);
-
   return (
     <>
       <select
@@ -39,7 +32,7 @@ const ProductSelect = () => {
         value={selectedProductId}
         onChange={handleProductChange}
       >
-        {state.products.map((product) => (
+        {products.map((product) => (
           <option
             key={product.id}
             value={product.id}

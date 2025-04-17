@@ -1,6 +1,6 @@
-import { Product } from "../../product/entities";
-import * as ProductEntity from "../../product/entities";
-import * as ProductService from "../../product/services";
+import { Product } from '../../product/entities';
+import * as ProductEntity from '../../product/entities';
+import * as ProductService from '../../product/services';
 
 // 번개세일 할인율
 const FLASH_SALE_DISCOUNT_RATE = 0.2; // 20%

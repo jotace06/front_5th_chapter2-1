@@ -1,6 +1,6 @@
 // 1_commands/promotion-commands.ts
-import { type AppState } from "../../core/state";
-import * as PromotionPolicy from "../../domains/promotion/policies";
+import { type AppState } from '../../core/state';
+import * as PromotionPolicy from '../../domains/promotion/policies';
 
 /**
  * 번개세일 적용

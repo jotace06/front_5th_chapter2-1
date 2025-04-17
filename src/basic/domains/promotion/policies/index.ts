@@ -1,1 +1,1 @@
-export * from "./promotion-policies";
+export * from './promotion-policies';

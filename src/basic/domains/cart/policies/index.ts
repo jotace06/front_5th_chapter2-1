@@ -1,1 +1,1 @@
-export * from "./cart-policies";
+export * from './cart-policies';

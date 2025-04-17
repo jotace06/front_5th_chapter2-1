@@ -9,9 +9,9 @@ const CartList = () => {
   } = useAppContext();
 
   return (
-    <div id="cart-items" className="my-4 space-y-2">
-      {cartItems.map((item) => (
-        <CartItem key={item.id} cartItem={item} />
+    <div id="cart-items" data-testid="cart-items" className="my-4 space-y-2">
+      {cartItems.map((cartItem) => (
+        <CartItem key={cartItem.id} cartItem={cartItem} />
       ))}
     </div>
   );

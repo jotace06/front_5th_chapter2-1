@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useAppState, useAppDispatch } from '../../../app/app-context';
 import { ActionType } from '../../../app/app-reducer';
-import * as PromotionService from '../services/promotion-services';
+import * as PromotionPolicy from '../policies/promotion-policies';
 
 /**
  * 프로모션 효과를 처리하는 커스텀 훅
@@ -16,7 +16,7 @@ export const usePromotions = () => {
     const flashSaleTimer = setInterval(() => {
       // 랜덤 상품 선택 (서비스 레이어 활용)
       const randomProduct =
-        PromotionService.selectRandomProductForFlashSale(products);
+        PromotionPolicy.selectRandomProductForFlashSale(products);
 
       // 선택된 상품이 없으면 종료
       if (!randomProduct) return;
@@ -26,12 +26,12 @@ export const usePromotions = () => {
         type: ActionType.APPLY_FLASH_SALE,
         payload: {
           productId: randomProduct.id,
-          discountRate: PromotionService.FLASH_SALE_DISCOUNT_RATE,
+          discountRate: PromotionPolicy.FLASH_SALE_DISCOUNT_RATE,
         },
       });
 
       // 알림 표시
-      alert(PromotionService.createFlashSaleMessage(randomProduct));
+      alert(PromotionPolicy.createFlashSaleMessage(randomProduct));
     }, 30000); // 30초마다
 
     return () => clearInterval(flashSaleTimer);
@@ -41,8 +41,10 @@ export const usePromotions = () => {
   useEffect(() => {
     const recommendationTimer = setInterval(() => {
       // 추천 상품 선택 (서비스 레이어 활용)
-      const recommendedProduct =
-        PromotionService.selectProductForRecommendation(products, lastSelected);
+      const recommendedProduct = PromotionPolicy.selectProductForRecommendation(
+        products,
+        lastSelected
+      );
 
       // 추천할 상품이 없으면 종료
       if (!recommendedProduct) return;
@@ -52,12 +54,12 @@ export const usePromotions = () => {
         type: ActionType.APPLY_RECOMMENDATION,
         payload: {
           productId: recommendedProduct.id,
-          discountRate: PromotionService.RECOMMENDATION_DISCOUNT_RATE,
+          discountRate: PromotionPolicy.RECOMMENDATION_DISCOUNT_RATE,
         },
       });
 
       // 알림 표시
-      alert(PromotionService.createRecommendationMessage(recommendedProduct));
+      alert(PromotionPolicy.createRecommendationMessage(recommendedProduct));
     }, 60000); // 60초마다
 
     return () => clearInterval(recommendationTimer);
